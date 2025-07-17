@@ -3,7 +3,7 @@ import { productos } from './datos';
 
 function App() {
   return (
-    <div>
+    <div className='contenedor-productos'>
       {productos.map((producto) => (
         <TarjetaProducto
           nombre={producto.nombre}
