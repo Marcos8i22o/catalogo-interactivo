@@ -14,13 +14,17 @@ function App() {
         }}
       />
       <div className="contenedor-productos">
-        {productos.map((producto) => (
-          <TarjetaProducto
-            nombre={producto.nombre}
-            precio={producto.precio}
-            imagen={producto.imagen}
-          />
-        ))}
+        {productos
+          .filter((producto) => producto.nombre.toLowerCase().includes(inputTexto.toLowerCase()))
+          .map((producto)=> (
+            <TarjetaProducto
+              key={producto.id}
+              nombre={producto.nombre}
+              precio={producto.precio}
+              imagen={producto.imagen}
+              descripcion={producto.descripcion}
+            />
+          ))}
       </div>
     </>
   );
