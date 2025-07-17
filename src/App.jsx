@@ -1,11 +1,18 @@
 import Encabezado from './componentes/Encabezado';
 import TarjetaProducto from './componentes/TarjetaProducto';
 import { productos } from './datos';
+import { useState } from 'react';
 
 function App() {
+  const [inputTexto, setInputTexto] = useState('');
+
   return (
     <>
-      <Encabezado />
+      <Encabezado
+        onChange={(inputTexto) => {
+          setInputTexto(inputTexto);
+        }}
+      />
       <div className="contenedor-productos">
         {productos.map((producto) => (
           <TarjetaProducto
