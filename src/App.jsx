@@ -5,13 +5,19 @@ import { useState } from 'react';
 
 function App() {
   const [inputTexto, setInputTexto] = useState('');
+  const [botonCategoria, setBotonCategoria] = useState('');
+
+  const categoriasUnicas = [...new Set(productos.map(producto => producto.categoria))]     
+
 
   return (
     <>
       <Encabezado
+        categorias={categoriasUnicas}
         onChange={(inputTexto) => {
           setInputTexto(inputTexto);
         }}
+        onClick={(botonCategoria) => {setBotonCategoria(botonCategoria)}}
       />
       <div className="contenedor-productos">
         {productos
