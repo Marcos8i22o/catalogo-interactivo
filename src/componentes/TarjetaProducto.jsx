@@ -1,11 +1,11 @@
 
-function TarjetaProducto(props) {
+function TarjetaProducto({imagen, nombre, descripcion, precio}) {
   return (
     <div className="tarjeta">
-      <img src={props.imagen} alt="" />
-      <h2>{props.nombre}</h2>
-      <p>{props.descripcion}</p>
-      <h4>{"$"+props.precio}</h4>
+      <img src={imagen} alt="" />
+      <h2>{nombre}</h2>
+      <p>{descripcion}</p>
+      <h4>{"$"+precio}</h4>
     </div>
     
   );

@@ -5,10 +5,11 @@ import { useState } from 'react';
 
 function App() {
   const [inputTexto, setInputTexto] = useState('');
-  const [botonCategoria, setBotonCategoria] = useState('');
+  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
 
-  const categoriasUnicas = [...new Set(productos.map(producto => producto.categoria))]     
-
+  const categoriasUnicas = [
+    ...new Set(productos.map((producto) => producto.categoria)),
+  ];
 
   return (
     <>
@@ -17,12 +18,14 @@ function App() {
         onChange={(inputTexto) => {
           setInputTexto(inputTexto);
         }}
-        onClick={(botonCategoria) => {setBotonCategoria(botonCategoria)}}
+        onCategoriaClick={setCategoriaSeleccionada}
       />
       <div className="contenedor-productos">
         {productos
-          .filter((producto) => producto.nombre.toLowerCase().includes(inputTexto.toLowerCase()))
-          .map((producto)=> (
+          .filter((producto) =>
+            (producto.nombre.toLowerCase().includes(inputTexto.toLowerCase()) && (categoriaSeleccionada === "Todos" || producto.categoria === categoriaSeleccionada)),
+          )
+          .map((producto) => (
             <TarjetaProducto
               key={producto.id}
               nombre={producto.nombre}
