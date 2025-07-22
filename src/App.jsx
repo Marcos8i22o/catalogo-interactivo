@@ -6,10 +6,15 @@ import { useState } from 'react';
 function App() {
   const [inputTexto, setInputTexto] = useState('');
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('Todos');
+  const [carrito, setCarrito] = useState([]);
 
   const categoriasUnicas = [
     ...new Set(productos.map((producto) => producto.categoria)),
   ];
+
+  function agregarAlCarrito(producto){
+    [...carrito, producto]
+  }
 
   const productosFiltrados = productos
           .filter(
@@ -28,6 +33,8 @@ function App() {
               precio={producto.precio}
               imagen={producto.imagen}
               descripcion={producto.descripcion}
+              agregar={agregarAlCarrito}
+              
             />
             
           ))
