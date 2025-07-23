@@ -14,7 +14,26 @@ function App() {
   ];
 
   function agregarAlCarrito(producto) {
-    setCarrito([...carrito, producto]);
+    
+    const productoExistente = carrito.find(
+      (productoEnElCarrito) => productoEnElCarrito.id === producto.id,
+    );
+
+    if (productoExistente) {
+      const carritoActualizado = carrito.map((productoEnElCarrito) => {
+        if (productoEnElCarrito.id === producto.id) {
+          return {
+            ...productoEnElCarrito,
+            cantidad: productoEnElCarrito.cantidad + 1,
+          };
+        } else {
+          return productoEnElCarrito;
+        }
+      });
+      setCarrito(carritoActualizado);
+    } else {
+      setCarrito([...carrito, { ...producto, cantidad: 1 }]);
+    }
   }
 
   const productosFiltrados = productos
