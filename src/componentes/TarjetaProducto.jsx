@@ -1,12 +1,12 @@
 
-function TarjetaProducto({imagen, nombre, descripcion, precio, agregarAlCarrito}) {
+function TarjetaProducto({producto, agregarAlCarrito}) {
   return (
     <div className="tarjeta">
-      <img src={imagen} alt="" />
-      <h2>{nombre}</h2>
-      <p>{descripcion}</p>
-      <h4>{"$"+precio}</h4>
-      <button onClick={agregarAlCarrito}>Añadir al carrito</button>
+      <img src={producto.imagen} alt="" />
+      <h2>{producto.nombre}</h2>
+      <p>{producto.descripcion}</p>
+      <h4>{"$"+producto.precio}</h4>
+      <button onClick={()=>{agregarAlCarrito(producto)}}>Añadir al carrito</button>
     </div>
     
   );
