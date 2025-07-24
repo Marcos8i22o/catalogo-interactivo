@@ -35,6 +35,24 @@ function App() {
     }
   }
 
+  function eliminarDelCarrito(producto) {
+    const productoExistente = carrito.find(
+      (productoEnElCarrito) => productoEnElCarrito.id === producto.id,
+    );
+
+    if (productoExistente.cantidad > 1) {
+      const carritoNuevo = carrito.map((item) =>
+        item.id === producto.id
+          ? { ...item, cantidad: item.cantidad - 1 }
+          : item,
+      );
+      setCarrito(carritoNuevo);
+    } else {
+      const carritoNuevo = carrito.filter((item) => item.id !== producto.id);
+      setCarrito(carritoNuevo);
+    }
+  }
+
   const productosFiltrados = productos
     .filter(
       (producto) =>
@@ -73,7 +91,7 @@ function App() {
           </div>
         </div>
         <div className="lg:col-span-1">
-          <Carrito productosDelCarrito={carrito}></Carrito>
+          <Carrito productosDelCarrito={carrito} eliminarDelCarrito={eliminarDelCarrito}></Carrito>
         </div>
       </main>
     </div>
