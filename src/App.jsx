@@ -14,7 +14,6 @@ function App() {
   ];
 
   function agregarAlCarrito(producto) {
-    
     const productoExistente = carrito.find(
       (productoEnElCarrito) => productoEnElCarrito.id === producto.id,
     );
@@ -52,23 +51,32 @@ function App() {
     ));
 
   return (
-    <>
-      <Encabezado
-        categorias={categoriasUnicas}
-        onChange={(inputTexto) => {
-          setInputTexto(inputTexto);
-        }}
-        onCategoriaClick={setCategoriaSeleccionada}
-      />
-      <Carrito productosDelCarrito={carrito}></Carrito>
-      <div className="contenedor-productos">
-        {productosFiltrados.length !== 0 ? (
-          productosFiltrados
-        ) : (
-          <h4>No se encontraron resultados</h4>
-        )}
-      </div>
-    </>
+    <div className="bg-gray-50 min-h-screen font-sans">
+      <main className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8 grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="lg:col-span-2 flex flex-col gap-8">
+          <Encabezado
+            categorias={categoriasUnicas}
+            onChange={(inputTexto) => {
+              setInputTexto(inputTexto);
+            }}
+            onCategoriaClick={setCategoriaSeleccionada}
+          />
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6">
+            {productosFiltrados.length !== 0 ? (
+              productosFiltrados
+            ) : (
+              <h4 className='sm:col-span-2 xl:col-span-3 text-center text-gray-500"'>
+                No se encontraron resultados
+              </h4>
+            )}
+          </div>
+        </div>
+        <div className="lg:col-span-1">
+          <Carrito productosDelCarrito={carrito}></Carrito>
+        </div>
+      </main>
+    </div>
   );
 }
 
